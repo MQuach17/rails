@@ -75,6 +75,10 @@ class ArticlesController < ApplicationController
 			redirect_to articles_path
 		end
 
+		#authentication for seeing pages other than index and show, Two popular authentication add-ons for Rails are the Devise rails engine and the Authlogic gem, along with a number of others.
+		 http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+
+
 		private#private method to ensure params cannot be accessed outside its intended context
 			def article_params
 				params.require(:article).permit(:title,:text)

@@ -3,6 +3,7 @@ class Article < ActiveRecord::Base
 	# validates that all articles have titles at least five characters long
 	validates :title, presence:true, length: {minimum: 5}
 	#one to many association 
-	has_many :comments
+	has_many :comments, dependent: :destroy
   	#These two declarations (belongs_to and has_many, in comment.rb and article.rb) enable a good bit of automatic behavior. For example, if you have an instance variable @article containing an article, you can retrieve all the comments belonging to that article as an array using @article.comments.
+  	#If you delete an article, its associated comments will also need to be deleted, otherwise they would simply occupy space in the database. Rails allows you to use the dependent option of an association to achieve this.
 end
