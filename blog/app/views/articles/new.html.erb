@@ -12,20 +12,52 @@
 </head>
 <body>
 	<h1>New Article</h1>
-<%= form_for :article do |f| %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
- 
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+  <!-- The articles_path helper tells Rails to point the form to the URI Pattern associated with the articles prefix; and the form will (by default) send a POST request to that route. This is associated with the create action of the current controller, the ArticlesController. -->
+
+  <!-- render the partial form -->
+  <%= render 'form'  %>
+  <!-- Uncomment below to use old form of form_for, the above renders the partial form (/articles/_form.html.) -->
+  <!-- <%= form_for :article, url: articles_path do |f| %>
+  -->
+
+    <!-- start error handler, if any errors in the @articles instance, do this block -->
+
+    <!-- <% if @article.errors.any?  %> -->
+    <!-- The reason why we added @article = Article.new in the ArticlesController is that otherwise @article would be nil in our view, and calling 
+
+      <!-- <div id="error_explanation"> -->
+        <!-- <h2> -->
+        <!-- pluralize is a rails helper that takes a number and a string as its arguments. If the number is greater than one, the string will be automatically pluralized. -->
+           <!-- <%= pluralize(@article.errors.count, "error")  %> -->
+          <!-- prohibited this article from being saved: -->
+        <!-- </h2> -->
+        <!-- <ul> -->
+        <!-- begin display errors -->
+          <!--<% @article.errors.full_messages.each do |msg| %>-->
+            <!-- <li><%= msg %></li> -->
+          <!-- <% end %> -->
+          <!-- end display errors -->
+        <!-- </ul> -->
+      <!-- </div> -->
+
+    <!-- <% end %> -->
+    <!-- end error handler -->
+
+    <!-- <p> -->
+      <!--<%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </p>
+   
+    <p>
+      <%= f.label :text %><br>
+      <%= f.text_area :text %>
+    </p>
+   
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+  <!-- link back to index -->
+  <%= link_to 'Back', articles_path%>
 </body>
 </html>
