@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 #i.e  new_article GET    /articles/new(.:format)      articles#new
 #http://guides.rubyonrails.org/getting_started.html
 
-	resources:articles	
+	resources :articles	do
+    resources :comments
+    #This creates comments as a nested resource within articles. This is another part of capturing the hierarchical relationship that exists between articles and comments.
+  end
 
 
   # You can have the root of your site routed with "root"

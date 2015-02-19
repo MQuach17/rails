@@ -2,4 +2,7 @@
 class Article < ActiveRecord::Base
 	# validates that all articles have titles at least five characters long
 	validates :title, presence:true, length: {minimum: 5}
+	#one to many association 
+	has_many :comments
+  	#These two declarations (belongs_to and has_many, in comment.rb and article.rb) enable a good bit of automatic behavior. For example, if you have an instance variable @article containing an article, you can retrieve all the comments belonging to that article as an array using @article.comments.
 end
